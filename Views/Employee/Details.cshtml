@@ -1,0 +1,53 @@
+﻿@model LAB6.Models.Employee
+@{
+    Layout = ViewBag.Layout;
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-1 min-width-100">
+            <div class="info-label">Name:</div>
+            <div class="info-label">Surname:</div>
+            <div class="info-label">Birth Date:</div>
+            <div class="info-label">Position:</div>
+            <div class="info-label">Company:</div>
+        </div>
+        <div class="col-sm-2">
+            <div class="info-value">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="info-value">
+                @Html.DisplayFor(model => model.Surname)
+            </div>
+            <div class="info-value">
+                @Html.DisplayFor(model => model.BirthDate)
+            </div>
+            <div class="info-value">
+                @Html.DisplayFor(model => model.Position)
+            </div>
+            <div class="info-value">
+                @Html.DisplayFor(model => model.Company.Name)
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+            <img class="image" src="@Url.Content(Model.Image)" alt="@Model.Name" width="150" height="150" onerror="handleImageError(this)" />
+        </div>
+    </div>
+    @await Html.PartialAsync("Summary", Model)
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+<script>
+    function handleImageError(img) {
+        img.src = '/images/noimage.jpg';
+        img.alt = 'Default Image';
+    }
+</script>

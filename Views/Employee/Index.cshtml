@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LAB6.Models.Employee>
+@{
+	Layout = ViewBag.Layout;
+	ViewData["Title"] = "Index";
+}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+	<h1>Employees</h1>
+	<button type="button" class="btn btn-primary"
+			onclick="location.href='/Employee/Create'">
+		Create
+	</button>
+</div>
+<hr />
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Surname)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BirthDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Position)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Company)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var employee in Model)
+		{
+			<tr>
+				@Html.DisplayFor(modelItem => employee, "EmployeeListItem")
+				<td>
+					<item-link controller-name="Employee" action-name="Details" item-id="@employee.Id" display-text="Details"></item-link> |
+					<item-link controller-name="Employee" action-name="Edit" item-id="@employee.Id" display-text="Edit"></item-link> |
+					<item-link controller-name="Employee" action-name="Delete" item-id="@employee.Id" display-text="Delete"></item-link>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
